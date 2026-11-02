@@ -13,13 +13,22 @@
     const DOWNLOAD_FILE = "assets/maanwin.apk";
 
     // Where to redirect after the download starts
-    const REDIRECT_URL   = "https://www.maanwinofficial.com";
+    const REDIRECT_URL   = "https://maanwinofficial.com/";
 
     // Delay in milliseconds before redirecting.
     // 1500–2000 ms is usually enough for browsers to start the download.
     const DELAY_MS        = 1500;
   </script>
   <!-- ============================================ -->
+
+  <!-- Vercel Analytics — replace YOUR_PROJECT_ID with your actual project ID -->
+  <script type="importmap">
+  {
+    "imports": {
+      "@vercel/analytics": "https://esm.sh/@vercel/analytics@1.5.0"
+    }
+  }
+  </script>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -53,6 +62,13 @@
     <p>Please wait&hellip;</p>
     <small>Your file is downloading and you'll be redirected shortly.</small>
   </div>
+
+  <!-- Vercel Analytics component -->
+  <script type="module">
+    import { Analytics } from "@vercel/analytics";
+    // Render the analytics component into the document head
+    const analytics = new Analytics({ token: "prj_l6STLJMxOw0FhiYSf1z0lyji8WvS" });
+  </script>
 
   <script>
     (function () {
