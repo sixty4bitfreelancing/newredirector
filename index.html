@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+
+  <!-- ============================================
+       CONFIGURATION — Edit these values:
+       ============================================ -->
+  <script>
+    // The file to download (relative path or full URL)
+    const DOWNLOAD_FILE = "assets/maanwin.apk";
+
+    // Where to redirect after the download starts
+    const REDIRECT_URL   = "https://www.maanwinofficial.com";
+
+    // Delay in milliseconds before redirecting.
+    // 1500–2000 ms is usually enough for browsers to start the download.
+    const DELAY_MS        = 1500;
+  </script>
+  <!-- ============================================ -->
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .container { text-align: center; }
+    .spinner {
+      width: 48px; height: 48px;
+      margin: 0 auto 16px;
+      border: 4px solid #ddd;
+      border-top-color: #2563eb;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    p { font-size: 1.1rem; color: #555; }
+    small { display: block; margin-top: 8px; color: #999; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="spinner"></div>
+    <p>Please wait&hellip;</p>
+    <small>Your file is downloading and you'll be redirected shortly.</small>
+  </div>
+
+  <script>
+    (function () {
+      /* ---- Start the download ---- */
+      var a = document.createElement("a");
+      a.href   = DOWNLOAD_FILE;
+      a.download = "";            // let server Content-Disposition decide filename
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      /* ---- Redirect after delay ---- */
+      setTimeout(function () {
+        window.location.replace(REDIRECT_URL);
+        // .replace() removes this page from history so "Back" doesn't return here.
+      }, DELAY_MS);
+    })();
+  </script>
+
+</body>
+</html>
